@@ -1,0 +1,2995 @@
+CONTENT
+Sl. No.ExperimentDateCOPage No.1Design a Login Form with username and password using Linear Layout and toast valid credentials23/08/2022 CO11-32Write a program that demonstrates Activity Lifecycle.23/08/2022 CO14-63Implementing basic arithmetic operations of a simple calculator30/08/2022 CO17-114Implement validations on various UI controls30/08/2022 CO112-195Design a registration activity and store registration details in local memory of phone using Intents and SharedPreferences06/09/2022 CO220-276Design a simple Calculator using GridLayout and Cascaded LinearLayout13/09/2022 CO228-397Create a Facebook page using RelativeLayout; set properties using .xml file20/09/2022 CO240-438Develop an application that toggles image using FrameLayout27/09/2022 CO244-469Implement Adapters and perform exception handling 27/09/2022 CO347-4910Implement Intent to navigate between multiple activities04/10/2022 CO350-5311Develop application that works with explicit intents
+04/10/2022 CO354-5912Implement Options Menu to navigate to activities18/10/2022 CO360-6213Develop an application that uses ArrayAdapter with ListView.18/10/2022 CO363-6414Develop an application that use GridView with images and display Alert box on selection 25/10/2022 CO465-6915Develop an application that implements Spinner component and perform event handling25/10/2022 CO470-7216Create database using SQLite and perform INSERT and SELECT
+01/11/2022 CO573-7817Perform UPDATE and DELETE on SQLite database01/11/2022 CO579-86
+
+Experiment No.: 1
+Aim
+Design a Login Form with username and password using Linear Layout and toast valid credentials
+
+CO1
+Design and develop user interfaces for mobile apps using basic building blocks, UI components and application structure using Emulator
+
+Procedure
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:inputType="textPersonName"
+        android:hint="Username"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:inputType="textPassword"
+        android:hint="Password"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_margin="10dp"/>
+</LinearLayout>
+
+
+
+MainActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Variable Creation
+    EditText username,password;
+    Button login;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Variables Initializations
+        username= findViewById(R.id.username);
+        password= findViewById(R.id.password);
+        login= findViewById(R.id.login);
+
+        // Below code works when user clicks on the login button
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String username_text= username.getText().toString();
+                String password_text= password.getText().toString();
+                Toast.makeText(MainActivity.this, "Login Successful.\nUsername is : "+username_text+"\nPassword is : "+password_text, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
+
+Output Screenshot
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO1 was obtained.
+
+
+
+
+
+
+
+
+Experiment No.: 2
+Aim
+Write a program that demonstrates Activity Lifecycle.
+
+CO1
+Design and develop user interfaces for mobile apps using basic building blocks, UI components and application structure using Emulator
+
+Procedure
+
+activity_ques02.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".Ques02Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question explaining the Activity-LifeCycle" />
+
+</LinearLayout>
+
+Ques02Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+public class Ques02Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques02);
+        Log.d("lifecycle", "onCreate invoked");
+        Toast.makeText(getApplicationContext(), "onCreate invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("lifecycle", "onStart invoked");
+        Toast.makeText(getApplicationContext(), "onStart invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("lifecycle", "onResume invoked");
+        Toast.makeText(getApplicationContext(), "onResume invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("lifecycle", "onPause invoked");
+        Toast.makeText(getApplicationContext(), "onPause invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("lifecycle", "onStop invoked");
+        Toast.makeText(getApplicationContext(), "onStop invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("lifecycle", "onRestart invoked");
+        Toast.makeText(getApplicationContext(), "onRestart invoked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("lifecycle", "onDestroy invoked");
+        Toast.makeText(getApplicationContext(), "onDestroy invoked", Toast.LENGTH_SHORT).show();
+    }
+
+}
+
+Output Screenshot
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO1 was obtained.
+
+
+
+Experiment No.: 3
+Aim
+Implementing basic arithmetic operations of a simple calculator
+
+CO1
+Design and develop user interfaces for mobile apps using basic building blocks, UI components and application structure using Emulator
+
+Procedure
+
+activity_ques03.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Ques03Activity">
+
+    <EditText
+        android:id="@+id/number1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Number 01"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/number2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Enter Number 02"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/sub_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/mul_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="x" />
+
+    <Button
+        android:id="@+id/div_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/clear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="clear" />
+
+</LinearLayout>
+
+Ques03Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class Ques03Activity extends AppCompatActivity {
+
+    EditText number1, number2;
+    TextView result_text;
+    Button add_btn, sub_btn, mul_btn, div_btn, clear_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques03);
+
+        number1= findViewById(R.id.number1);
+        number2= findViewById(R.id.number2);
+        result_text= findViewById(R.id.result_text);
+        add_btn= findViewById(R.id.add_btn);
+        sub_btn= findViewById(R.id.sub_btn);
+        mul_btn= findViewById(R.id.mul_btn);
+        div_btn= findViewById(R.id.div_btn);
+        clear_btn= findViewById(R.id.clear_btn);
+
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number1_text= number1.getText().toString();
+                String number2_text= number2.getText().toString();
+                int num1= Integer.parseInt(number1_text);
+                int num2= Integer.parseInt(number2_text);
+                float sum= num1+num2;
+                result_text.setText("The addition of the two numbers is : "+sum);
+                Toast.makeText(getApplicationContext(), "The addition of the two numbers is : "+sum, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sub_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number1_text= number1.getText().toString();
+                String number2_text= number2.getText().toString();
+                int num1= Integer.parseInt(number1_text);
+                int num2= Integer.parseInt(number2_text);
+                float sub= num1-num2;
+                result_text.setText("The substraction of the two numbers is : "+sub);
+                Toast.makeText(getApplicationContext(), "The substraction of the two numbers is : "+sub, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mul_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number1_text= number1.getText().toString();
+                String number2_text= number2.getText().toString();
+                int num1= Integer.parseInt(number1_text);
+                int num2= Integer.parseInt(number2_text);
+                float mul= num1*num2;
+                result_text.setText("The multiplication of the two numbers is : "+mul);
+                Toast.makeText(getApplicationContext(), "The multiplication of the two numbers is : "+mul, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        div_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number1_text= number1.getText().toString();
+                String number2_text= number2.getText().toString();
+                int num1= Integer.parseInt(number1_text);
+                int num2= Integer.parseInt(number2_text);
+                float div= num1/num2;
+                result_text.setText("The division of the two numbers is : "+div);
+                Toast.makeText(getApplicationContext(), "The division of the two numbers is : "+div, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        clear_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                number1.setText("");
+                number2.setText("");
+                result_text.setText("");
+                Toast.makeText(getApplicationContext(), "Inputs cleared...", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+
+Output Screenshot
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO1 was obtained.
+
+
+Experiment No.: 4
+Aim
+Implement validations on various UI controls
+
+CO1
+Design and develop user interfaces for mobile apps using basic building blocks, UI components and application structure using Emulator
+
+Procedure
+
+activity_ques04.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    tools:context=".Ques04Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI Validation Form"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/name_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="Enter your name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/email_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your email ID"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/age_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Enter your age (From 18 to 36)"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        android:importantForAutofill="no" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your favourites fast foods"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/pizza_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pizza"/>
+
+            <CheckBox
+                android:id="@+id/burger_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Burger"/>
+
+            <CheckBox
+                android:id="@+id/kfc_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="KFC"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/food_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#DD2C00" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your gender"/>
+
+        <RadioGroup
+            android:id="@+id/gender_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Female"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Others"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/gender_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#DD2C00" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
+
+Ques04Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class Ques04Activity extends AppCompatActivity {
+
+    EditText name_et, email_et, age_et;
+    CheckBox pizza_checkbox, burger_checkbox, kfc_checkbox;
+    TextView food_error, gender_error;
+    RadioGroup gender_radiogroup;
+    Button submit_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques04);
+        name_et= findViewById(R.id.name_et);
+        email_et= findViewById(R.id.email_et);
+        age_et= findViewById(R.id.age_et);
+        pizza_checkbox= findViewById(R.id.pizza_checkbox);
+        burger_checkbox= findViewById(R.id.burger_checkbox);
+        kfc_checkbox= findViewById(R.id.kfc_checkbox);
+        food_error= findViewById(R.id.food_error);
+        gender_error= findViewById(R.id.gender_error);
+        gender_radiogroup= findViewById(R.id.gender_radiogroup);
+        submit_btn= findViewById(R.id.submit_btn);
+
+        submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gender_error.setText("");
+                food_error.setText("");
+                name_et.setError(null);
+                age_et.setError(null);
+                email_et.setError(null);
+                String name_txt= name_et.getText().toString();
+                String email_txt= email_et.getText().toString();
+                String age_txt= age_et.getText().toString();
+                int gender_id= gender_radiogroup.getCheckedRadioButtonId();
+                boolean ispizza_checked= pizza_checkbox.isChecked();
+                boolean isburger_checked= burger_checkbox.isChecked();
+                boolean iskfc_checked= kfc_checkbox.isChecked();
+
+                if(name_txt.equals("")){
+                    name_et.setError("Please enter your name !!");
+                    name_et.requestFocus();
+                }
+                else if(email_txt.equals("")){
+                     email_et.setError("Please enter your email ID");
+                     email_et.requestFocus();
+                }
+                else if(age_txt.equals("")){
+                    age_et.setError("Please enter your age");
+                    age_et.requestFocus();
+                }
+                else if(Integer.parseInt(age_txt) < 18 || Integer.parseInt(age_txt) > 36){
+                    age_et.setError("Please enter valid a age from between 18 to 36 !!");
+                    age_et.requestFocus();
+                }
+                else if(!ispizza_checked && !isburger_checked && !iskfc_checked){
+                    food_error.setText("Please select atleast one item !!");
+                }
+                else if(gender_id < 0){
+                    gender_error.setText("Please select your gender !!");
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Form Submiited Successfully...", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+}
+
+Output Screenshot
+
+      
+      
+
+      
+
+
+
+Result
+The program was executed and the result was successfully obtained. Thus CO1 was obtained.
+
+
+
+
+
+
+Experiment No.: 5
+Aim
+Design a registration activity and store registration details in local memory of phone using Intents and SharedPreferences
+
+CO2
+Write simple programs and develop small applications using the concepts of UI design, layouts and preferences
+
+Procedure
+
+activity_ques05.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:id="@+id/main_layout"
+    android:paddingVertical="10dp"
+    android:gravity="center"
+    tools:context=".Ques05Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Page"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/fullname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:layout_marginTop="30dp"
+        android:hint="Full Name"/>
+
+    <EditText
+        android:id="@+id/emailid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email ID"/>
+
+    <RadioGroup
+        android:id="@+id/gender_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/male_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"/>
+
+        <RadioButton
+            android:id="@+id/female_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Female"/>
+
+        <RadioButton
+            android:id="@+id/others_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Others"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/gender_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0000"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Register"/>
+
+</LinearLayout>
+
+Ques05Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+public class Ques05Activity extends AppCompatActivity {
+
+    EditText fullname, emailid, password;
+    RadioGroup gender_radioGroup;
+    RadioButton male_gender, female_gender, others_gender;
+    Button register_btn;
+    TextView gender_error;
+    LinearLayout main_layout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques05);
+
+        fullname= findViewById(R.id.fullname);
+        emailid= findViewById(R.id.emailid);
+        password= findViewById(R.id.password);
+        gender_radioGroup= findViewById(R.id.gender_radioGroup);
+        male_gender= findViewById(R.id.male_gender);
+        female_gender= findViewById(R.id.female_gender);
+        others_gender= findViewById(R.id.others_gender);
+        register_btn= findViewById(R.id.register_btn);
+        gender_error= findViewById(R.id.gender_error);
+        main_layout= findViewById(R.id.main_layout);
+
+        register_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                fullname.setError(null);
+                emailid.setError(null);
+                gender_error.setText("");
+                password.setError(null);
+
+                String password_regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+                String fullname_text= fullname.getText().toString();
+                String emailid_text= emailid.getText().toString();
+                String password_text= password.getText().toString();
+                int gender_selected= gender_radioGroup.getCheckedRadioButtonId();
+                String gender="Not Available";
+
+                if(gender_selected==R.id.male_gender)
+                    gender="Male";
+                else if(gender_selected==R.id.female_gender)
+                    gender="Female";
+                else if(gender_selected==R.id.others_gender)
+                    gender="Others";
+
+                if(fullname_text.equals("")){
+                    fullname.requestFocus();
+                    fullname.setError("Please enter fullname !!");
+                }
+                else if(fullname_text.length() < 3){
+                    fullname.requestFocus();
+                    fullname.setError("Fullname should be more than 2 characters !!");
+                }
+                else if(emailid_text.equals("")){
+                    emailid.requestFocus();
+                    emailid.setError("Please enter email-id !!");
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(emailid_text).matches()){
+                    emailid.requestFocus();
+                    emailid.setError("Please enter a valid email-id !!");
+                }
+                else if(gender_selected < 0){
+                    gender_error.setText("Select anyone of the gender option !!");
+                }
+                else if(!password_text.matches(password_regex)){
+                    password.requestFocus();
+                    password.setError("Password should contain - \na digit must occur at least once\na lower case letter must occur at least once\nan upper case letter must occur at least once\na special character like @#$%^&+=\nNo blank spaces allowed\natleast 6 characters");
+                }
+                else{
+                    SharedPreferences pref= getSharedPreferences("register_data", MODE_PRIVATE);
+                    SharedPreferences.Editor pref_edit= pref.edit();
+                    pref_edit.putString("reg_fullname",fullname_text);
+                    pref_edit.putString("reg_emailid",emailid_text);
+                    pref_edit.putString("reg_password",password_text);
+                    pref_edit.putString("reg_gender",gender);
+                    pref_edit.apply();
+
+                    Intent intent= new Intent(getApplicationContext(),Ques05ResultActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+}
+
+activity_ques05_result.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="10dp"
+    tools:context=".Ques05ResultActivity">
+
+    <TextView
+        android:id="@+id/fullname_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Name : "/>
+
+    <TextView
+        android:id="@+id/emailid_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Name : "/>
+
+    <TextView
+        android:id="@+id/gender_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Gender : "/>
+
+    <TextView
+        android:id="@+id/password_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Password : "/>
+
+
+
+</LinearLayout>
+
+
+Ques05ResultActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class Ques05ResultActivity extends AppCompatActivity {
+
+    TextView fullname_result, emailid_result, gender_result, password_result;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques05_result);
+
+        fullname_result= findViewById(R.id.fullname_result);
+        emailid_result= findViewById(R.id.emailid_result);
+        gender_result= findViewById(R.id.gender_result);
+        password_result= findViewById(R.id.password_result);
+
+        SharedPreferences pref= getSharedPreferences("register_data", MODE_PRIVATE);
+        String name= pref.getString("reg_fullname","Not Available !!");
+        String email= pref.getString("reg_emailid","Not Available !!");
+        String password= pref.getString("reg_password","Not Available !!");
+        String gender= pref.getString("reg_gender","Not Available !!");
+
+        fullname_result.setText("Name : "+name);
+        emailid_result.setText("Email ID : "+email);
+        gender_result.setText("Gender : "+gender);
+        password_result.setText("Password : "+password);
+    }
+}
+
+Output Screenshot
+
+
+
+     
+        
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO2 was obtained.
+
+
+Experiment No.: 6
+Aim
+Design a simple Calculator using GridLayout and Cascaded LinearLayout
+
+CO2
+Write simple programs and develop small applications using the concepts of UI design, layouts and preferences
+
+Procedure
+
+activity_ques06_cascaded_layout.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/calculator_mainlay"
+    android:padding="20dp"
+    tools:context=".Ques06CascadedLayoutActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Number 01"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Number 02"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Result"
+        android:clickable="false"
+        android:enabled="false"
+        android:inputType="number"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/numclearall_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="CE"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/numclear_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="C"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/nummodulus_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="%"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/divide_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="/"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/num7_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="7"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num8_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="8"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num9_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="9"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/multiply_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="x"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/num4_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="4"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num5_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="5"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num6_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="6"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/substract_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="-"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/num1_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="1"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num2_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="2"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num3_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="3"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/add_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="+"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:weightSum="4">
+
+            <Button
+                android:id="@+id/numplusminus_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="+/-"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/num0_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="0"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/decimal_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="."
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/equals_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:textColor="@color/white"
+                android:text="="
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+Ques06CascadedLayoutActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Ques06CascadedLayoutActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques06_cascaded_layout);
+    }
+}
+
+
+activity_ques06_cascaded_layout.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calculator_mainlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Ques06GridLayoutActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="Number 01"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Number 02"
+        android:inputType="number" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:enabled="false"
+        android:hint="Result"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:rowCount="5">
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="CE"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="C"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="%"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="/"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="7"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="8"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="9"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="x"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="4"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="5"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="6"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="-"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="1"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="2"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="3"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="+"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="+/-"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="."
+                android:textColor="@color/white" />
+
+            <Button
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="13dp"
+                android:text="="
+                android:textColor="@color/white" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+Ques06CascadedLayoutActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Ques06GridLayoutActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques06_grid_layout);
+    }
+}
+
+
+
+
+
+
+
+Output Screenshot
+
+      
+
+Result
+The program was executed and the result was successfully obtained. Thus CO2 was obtained.
+
+
+
+
+
+
+Experiment No.: 7
+Aim
+Create a Facebook page using RelativeLayout; set properties using .xml file
+
+CO2
+Write simple programs and develop small applications using the concepts of UI design, layouts and preferences
+
+Procedure
+
+activity_ques07.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:id="@+id/mainlay"
+    tools:context=".Ques07Activity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:src="@drawable/fb_subbg"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nederlands . Polski . More ..."
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/fb_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone or email"
+            android:digits=""
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/fb_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/fb_loginbtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Log In"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:backgroundTint="#3F51B5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textStyle="bold"
+            android:textColor="#3F51B5"
+            android:textSize="17sp"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:weightSum="3">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1.45"
+                android:background="#CCCCCC"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:textAlignment="center"
+                android:layout_weight="0.2"/>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1.45"
+                android:background="#CCCCCC"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create New facebook Account"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:backgroundTint="#4CAF50"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+Ques07Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Ques07Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques07);
+    }
+}
+
+
+Output Screenshot
+
+
+
+Result
+The program was executed and the result was successfully obtained. Thus CO2 was obtained.
+
+
+
+Experiment No.: 8
+Aim
+Develop an application that toggles image using FrameLayout
+
+CO2
+Write simple programs and develop small applications using the concepts of UI design, layouts and preferences
+
+Procedure
+
+activity_ques08.xml
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ques08Activity">
+
+    <ToggleButton
+        android:id="@+id/toggle_img_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/ic_unlocked"
+        android:layout_gravity="center"/>
+
+</FrameLayout>
+
+
+
+
+Ques08Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+public class Ques08Activity extends AppCompatActivity {
+
+    ToggleButton toggle_img_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques08);
+
+        toggle_img_btn= findViewById(R.id.toggle_img_btn);
+
+        toggle_img_btn.setOnClickListener(v->{
+            if(toggle_img_btn.isChecked()){
+                toggle_img_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_locked));
+                Toast.makeText(getApplicationContext(), "Application Locked Successfully.", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                toggle_img_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_unlocked));
+                Toast.makeText(getApplicationContext(), "Application Unlocked Successfully.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+
+
+
+
+
+
+
+
+Output Screenshot
+
+      
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO2 was obtained.
+
+
+
+Experiment No.: 9
+Aim
+Implement Adapters and perform exception handling
+
+CO3
+Develop applications with multiple activities using intents, array adapter, exceptions and options menu.
+
+Procedure
+
+activity_ques09.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques09Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exception Activity"/>
+    
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Value of 0 / 0 : "/>
+
+</LinearLayout>
+
+
+
+
+
+Ques09Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class Ques09Activity extends AppCompatActivity {
+
+    TextView textview;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques09);
+
+        textview= findViewById(R.id.textview);
+
+        try{
+            int n1=0, n2=0;
+            int a= n1/n2;
+            textview.setText("Value of 0 / 0 : "+a);
+            Toast.makeText(getApplicationContext(), "The value is : "+a, Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), "The caught exception is : "+e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+    }
+}
+
+
+
+
+Output Screenshot
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO3 was obtained.
+
+
+
+
+
+Experiment No.: 10
+Aim
+Implement Intent to navigate between multiple activities
+
+CO3
+Develop applications with multiple activities using intents, array adapter, exceptions and options menu.
+
+Procedure
+
+activity_ques10.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques10Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME ACTIVITY PAGE"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View AJCE"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+
+
+
+Ques10Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class Ques10Activity extends AppCompatActivity {
+
+    Button button;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques10);
+
+        button= findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(), Ques10ResultActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
+
+
+
+activity_ques10_result.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:orientation="vertical"
+    tools:context=".Ques10ResultActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/amal_jyothi"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amal Jyothi College of Engineering"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="17sp"/>
+
+</LinearLayout>
+
+Ques10ResultActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Ques10ResultActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques10_result);
+    }
+}
+
+
+
+
+Output Screenshot
+
+         
+
+Result
+The program was executed and the result was successfully obtained. Thus CO3 was obtained.
+
+
+
+
+
+
+Experiment No.: 11
+Aim
+Develop application that works with explicit intents
+
+CO3
+Develop applications with multiple activities using intents, array adapter, exceptions and options menu.
+
+Procedure
+
+activity_ques11.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques11Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Activity Page" />
+
+    <Button
+        android:id="@+id/goto_second_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Second Activity Page"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+
+
+Ques11Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class Ques11Activity extends AppCompatActivity {
+
+    Button goto_second_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques11);
+
+        goto_second_btn= findViewById(R.id.goto_second_btn);
+        goto_second_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(), Ques11SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+}
+
+activity_ques11.xml
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class Ques11Activity extends AppCompatActivity {
+
+    Button goto_second_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques11);
+
+        goto_second_btn= findViewById(R.id.goto_second_btn);
+        goto_second_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(), Ques11SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+}
+
+Ques11SecondActivity.java
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques11SecondActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Second Activity Page" />
+
+    <Button
+        android:id="@+id/goto_third_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Third Page"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+activity_ques11_third.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques11ThirdActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Third Activity Page" />
+
+    <Button
+        android:id="@+id/goto_main_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go back to Main Activity Page"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+Ques11ThirdActivity.java
+package com.example.application;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Ques11ThirdActivity extends AppCompatActivity {
+
+    Button goto_main_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques11_third);
+
+        goto_main_btn= findViewById(R.id.goto_main_btn);
+        goto_main_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(), Ques11Activity.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
+
+Output Screenshot
+
+        
+
+
+
+Result
+The program was executed and the result was successfully obtained. Thus CO1 was obtained.
+
+
+
+Experiment No.: 12
+Aim
+Implement Options Menu to navigate to activities
+
+CO3
+Develop applications with multiple activities using intents, array adapter, exceptions and options menu.
+
+Procedure
+
+activity_ques12.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ques12Activity">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.java
+package com.example.application;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class Ques12Activity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques12);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int menu_id= item.getItemId();
+        switch (menu_id){
+            case R.id.second_activity:{
+                Intent intent= new Intent(getApplicationContext(), SecondActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.third_activity:{
+                Intent intent= new Intent(getApplicationContext(), ThirdActivity.class);
+                startActivity(intent);
+                break;
+            }
+            default:{
+                Intent intent= new Intent(getApplicationContext(), Ques12Activity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+}
+
+menu_items.xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+
+        <item
+            android:id="@+id/second_activity"
+            android:title="Second Activity"
+            app:showAsAction="never"
+            app:iconTint="@color/white"/>
+
+        <item
+            android:id="@+id/third_activity"
+            android:title="Third Activity"
+            app:showAsAction="never"
+            app:iconTint="@color/white"/>
+
+    </group>
+</menu>
+
+Output Screenshot
+
+
+Result
+The program was executed and the result was successfully obtained. Thus CO3 was obtained.
+
+
+
+
+Experiment No.: 13
+Aim
+Develop an application that uses ArrayAdapter with ListView.
+
+CO3
+Develop applications with multiple activities using intents, array adapter, exceptions and options menu.
+
+Procedure
+
+activity_ques13.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+
+Ques13Activity.java
+package com.example.application;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
+public class Ques13Activity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques13);
+
+        ListView listview;
+        String[] person_qualify = {"Front-End Developer", "Data Analyst", "Software Tester", "Software Developer", "Programming Analyst", "Web Developer", "Mobile App Developer", "Business Analyst", "Database Analyst"};
+        listview = findViewById(R.id.listview);
+        listview.setAdapter(new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1, person_qualify));
+        listview.setOnItemClickListener((parent, view, position, id) -> {
+            Toast.makeText(this, "The qualification selected is - " + person_qualify[position], Toast.LENGTH_SHORT).show();
+        });
+    }
+}
+
+Output Screenshot
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO3 was obtained.
+
+
+
+Experiment No.: 14
+Aim
+Develop an application that use GridView with images and display Alert box on selection
+
+CO4
+Implement activities with dialogs, spinner, fragments and navigation drawer by applying themes
+
+Procedure
+
+activity_ques14.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques14Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile Quick-Access Options"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:rowCount="3">
+
+        <ImageButton
+            android:id="@+id/wifi_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="13dp"
+            android:src="@drawable/ic_wifi"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/blutooth_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:padding="13dp"
+            android:src="@drawable/ic_bluetooth"
+            android:textColor="@color/white" />
+
+        <ImageButton
+            android:id="@+id/volume_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:padding="13dp"
+            android:src="@drawable/ic_volume"
+            android:textColor="@color/white" />
+
+    </GridLayout>
+
+</LinearLayout>
+
+Ques14Activity.java
+package com.example.application;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+public class Ques14Activity extends AppCompatActivity {
+
+    ImageButton wifi_btn, blutooth_btn, volume_btn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques14);
+
+        wifi_btn= findViewById(R.id.wifi_btn);
+        blutooth_btn= findViewById(R.id.blutooth_btn);
+        volume_btn= findViewById(R.id.volume_btn);
+
+        wifi_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myAlertBox("Wifi Button");
+            }
+        });
+
+        blutooth_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myAlertBox("Bluetooth Button");
+            }
+        });
+
+        volume_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myAlertBox("Volume Button");
+            }
+        });
+    }
+
+    public void myAlertBox(String buttonname){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Ques14Activity.this);
+        builder.setMessage("Are you sure about the selection ?");
+        builder.setTitle("Alert !");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), buttonname+" is successfully selected.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+}
+
+Output Screenshot
+
+     
+
+
+
+
+
+
+
+
+
+
+Result
+The program was executed and the result was successfully obtained. Thus, CO4 was obtained.
+
+
+Experiment No.: 15
+Aim
+Develop an application that implements Spinner component and perform event handling
+
+CO4
+Implement activities with dialogs, spinner, fragments and navigation drawer by applying themes
+
+Procedure
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Ques15Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spinner &amp; Event Handling"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your desired designation"
+        android:layout_marginTop="30dp" />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+MainActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+public class Ques15Activity extends AppCompatActivity {
+
+    Spinner spinner;
+    String[] designations = {"Front-End Developer", "Data Analyst", "Software Tester", "Software Developer", "Programming Analyst", "Web Developer", "Mobile App Developer", "Business Analyst", "Database Analyst"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques15);
+
+        spinner= findViewById(R.id.spinner);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, designations);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "Selected designation is : "+designations[i], Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {  }
+        });
+
+    }
+}
+
+
+
+Output Screenshot
+
+       
+
+Result
+The program was executed and the result was successfully obtained. Thus CO4 was obtained.
+
+
+
+
+Experiment No.: 16
+Aim
+Create database using SQLite and perform INSERT and SELECT
+
+CO5
+Develop mobile applications using SQLite.
+
+Procedure
+
+activity_ques16.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ques15Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Table"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/rollno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your roll no"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your name"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your email id"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/insert_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/select_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+
+MainActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Ques16Activity extends AppCompatActivity {
+
+    EditText rollno, name, email;
+    Button insert_btn, select_btn;
+    DBHelper db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques16);
+
+        rollno= findViewById(R.id.rollno);
+        name= findViewById(R.id.name);
+        email= findViewById(R.id.email);
+        insert_btn= findViewById(R.id.insert_btn);
+        select_btn= findViewById(R.id.select_btn);
+        db= new DBHelper(getApplicationContext());
+
+        insert_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int rollno_num= Integer.parseInt(rollno.getText().toString());
+                String name_txt= name.getText().toString();
+                String email_txt= email.getText().toString();
+
+                boolean insert_result= db.insertToDB(rollno_num, name_txt, email_txt);
+                if(insert_result){
+                    Toast.makeText(getApplicationContext(), "Inserted successfully.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Insertion failed !!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        select_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor res = db.selectFromDB();
+                if (res.getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), "No entry Exist", Toast.LENGTH_LONG).show();
+                } else {
+                    StringBuffer buffer = new StringBuffer();
+                    while (res.moveToNext()) {
+                        buffer.append("id : " + res.getString(0) + "\n");
+                        buffer.append("Name : " + res.getString(1) + "\n");
+                        buffer.append("email : " + res.getString(2) + "\n");
+                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Ques16Activity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("User Entries");
+                    builder.setMessage(buffer.toString());
+                    builder.show();
+                }
+            }
+        });
+    }
+}
+
+DBHelper.java
+package com.example.application;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class DBHelper extends SQLiteOpenHelper {
+
+    public DBHelper(@Nullable Context context) { super(context, "MyDB", null, 1); }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("CREATE TABLE userdetails (rollno INTEGER PRIMARY KEY, name TEXT, email TEXT)");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS userdetails");
+    }
+
+    public boolean insertToDB(int rollno, String name, String email){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put("rollno",rollno);
+        values.put("name",name);
+        values.put("email",email);
+        long result= db.insert("userdetails",null,values);
+        if(result>=0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Cursor selectFromDB() {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from userdetails", null);
+        return cursor;
+    }
+}
+
+
+
+Output Screenshot
+
+    
+
+
+
+
+    
+
+Result
+The program was executed and the result was successfully obtained. Thus CO5 was obtained.
+
+
+
+
+
+
+
+Experiment No.: 17
+Aim
+Perform UPDATE and DELETE on SQLite database
+
+CO5
+Develop mobile applications using SQLite.
+
+Procedure
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ques15Activity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insert Table"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/rollno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your roll no"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your name"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your email id"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Record"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Record"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/select_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Record"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+
+
+
+
+
+
+
+MainActivity.java
+package com.example.application;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Ques17Activity extends AppCompatActivity {
+
+    EditText rollno, name, email;
+    Button update_btn, delete_btn, select_btn;
+    DBHelper db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ques17);
+
+        rollno= findViewById(R.id.rollno);
+        name= findViewById(R.id.name);
+        email= findViewById(R.id.email);
+        update_btn= findViewById(R.id.update_btn);
+        delete_btn= findViewById(R.id.delete_btn);
+        select_btn= findViewById(R.id.select_btn);
+        db= new DBHelper(getApplicationContext());
+
+        update_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int rollno_num= Integer.parseInt(rollno.getText().toString());
+                String name_txt= name.getText().toString();
+                String email_txt= email.getText().toString();
+
+                DBHelper db= new DBHelper(getApplicationContext());
+
+                boolean update_result= db.updateToDB(rollno_num, name_txt, email_txt);
+                if(update_result){
+                    Toast.makeText(getApplicationContext(), "Updated successfully.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Updation failed !!", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        delete_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int rollno_num= Integer.parseInt(rollno.getText().toString());
+                DBHelper db= new DBHelper(getApplicationContext());
+
+                boolean update_result= db.deleteFromDB(rollno_num);
+                if(update_result){
+                    Toast.makeText(getApplicationContext(), "Deleted successfully.", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Deletion failed !!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        select_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Cursor res = db.selectFromDB();
+                if (res.getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), "No entry Exist", Toast.LENGTH_LONG).show();
+                } else {
+                    StringBuffer buffer = new StringBuffer();
+                    while (res.moveToNext()) {
+                        buffer.append("id : " + res.getString(0) + "\n");
+                        buffer.append("Name : " + res.getString(1) + "\n");
+                        buffer.append("email : " + res.getString(2) + "\n");
+                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Ques17Activity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("User Entries");
+                    builder.setMessage(buffer.toString());
+                    builder.show();
+                }
+            }
+        });
+
+    }
+}
+
+DBHelper.java
+package com.example.application;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class DBHelper extends SQLiteOpenHelper {
+
+    public DBHelper(@Nullable Context context) { super(context, "MyDB", null, 1); }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("CREATE TABLE userdetails (rollno INTEGER PRIMARY KEY, name TEXT, email TEXT)");
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS userdetails");
+    }
+
+    public boolean insertToDB(int rollno, String name, String email){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put("rollno",rollno);
+        values.put("name",name);
+        values.put("email",email);
+        long result= db.insert("userdetails",null,values);
+        if(result>=0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Cursor selectFromDB() {
+        SQLiteDatabase DB = this.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("Select * from userdetails", null);
+        return cursor;
+    }
+
+    public boolean updateToDB(int rollno, String name, String email){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues values= new ContentValues();
+        values.put("name",name);
+        values.put("email",email);
+        Cursor check_user= db.rawQuery("SELECT * from userdetails WHERE rollno=?",new String[]{String.valueOf(rollno)});
+        if(check_user.getCount() > 0){
+
+            long update_user_query= db.update("userdetails",values,"rollno=?",new String[]{String.valueOf(rollno)});
+            if(update_user_query >= 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean deleteFromDB(int rollno){
+        SQLiteDatabase db= this.getWritableDatabase();
+        Cursor check_user= db.rawQuery("SELECT * FROM userdetails WHERE rollno=?",new String[]{String.valueOf(rollno)});
+        if(check_user.getCount() > 0){
+            long delete_user_query= db.delete("userdetails","rollno=?", new String[]{String.valueOf(rollno)});
+            if(delete_user_query >= 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+}
+
+
+
+
+
+
+Output Screenshot
+
+      
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+Result
+The program was executed and the result was successfully obtained. Thus CO5 was obtained.
+
+
+
+20MCA243 – Mobile Application Development Lab	            	                                                       Dept. Computer Applications
+
+Amal Jyothi College of Engineering, Kanjirappally	                                                                                                                        1
+
